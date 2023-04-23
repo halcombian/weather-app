@@ -7,10 +7,16 @@ async function getWeather() {
 	);
 	const weatherData = await response.json();
 	const temp = document.getElementById("temp");
-	const clouds = document.getElementById("clouds");
+	const weatherText = document.getElementById("weather-text");
+	const weatherImg = document.createElement("img");
+	let weather = weatherData.weather[0].main;
 	console.log(weatherData);
 	temp.textContent = weatherData.main.temp.toString().slice(0, 2) + "°";
-	clouds.textContent = weatherData.weather[0].main;
+	weatherText.textContent = weather;
+	body.appendChild(weatherImg);
+	if (weather === "Clouds") {
+		weatherImg.src = "images/cloudy.png";
+	}
 }
 
 const cityInput = document.getElementById("city-input");
